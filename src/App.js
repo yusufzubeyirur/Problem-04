@@ -1,9 +1,16 @@
+import { useState } from "react";
 import Image from "next/image";
 
-// login'i ve dashboard + signout'u isAuthUser'a koşullu olarak görüntülemek için <></> fragment'ı kullanın
-
 export default function Navbar() {
-  const isAuthUser = false;
+  const [isAuthUser, setIsAuthUser] = useState(false);
+
+  const handleLogin = () => {
+    setIsAuthUser(true);
+  };
+
+  const handleSignOut = () => {
+    setIsAuthUser(false);
+  };
 
   return (
     <header className="navbar-wrapper">
@@ -15,12 +22,12 @@ export default function Navbar() {
               <a href="#" className="navbar-link">
                 Dashboard
               </a>
-              <a href="#" className="navbar-link">
+              <a href="#" className="navbar-link" onClick={handleSignOut}>
                 Sign out
               </a>
             </>
           ) : (
-            <a href="#" className="navbar-link">
+            <a href="#" className="navbar-link" onClick={handleLogin}>
               Login
             </a>
           )}
